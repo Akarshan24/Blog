@@ -18,12 +18,27 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">   
+    {%if cat_menu%}
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for item in cat_menu  %}
+          <a class="dropdown-item" href="{%url 'cat-view' item %}">{{item}}</a>          
+        {% endfor %}
+        </div>
+      </li>
+    {%endif%}
     {%if user.is_authenticated%}
         <li class="nav-item">
           <a class="nav-link" href="{%url 'create-post'%}">Add Post</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'logout'%}">LogOut</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'edit-cat'%}">Edit Categories</a>
         </li>
     {%else%}
        <li class="nav-item">

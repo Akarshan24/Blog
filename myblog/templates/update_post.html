@@ -1,21 +1,20 @@
 {%  extends 'base.html' %}
-{%block content%}
-{% if user.is_authenticated %}
 {%block title%}Update Post{%endblock%}
-
-    <h2> Update Post .... </h2>
-    <div class='form-group'>
-        <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-success">Update</button>
-        </form>
-    </div>
-
-
-{%else%}
-
-<h1> Please Login or SignUp to update a blog post</h1>
-
+{%block content%}
+{% if user.is_authenticated%}
+    {% if post.author.id == user.id %}
+        <h2> Update Post .... </h2>
+        <div class='form-group'>
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-success">Update</button>
+            </form>
+        </div>
+    {%else%}
+        <h1> Sorry {{user.first_name}}, You are not allowed to edit this post</h1>
+    {% endif %}
+{% else %}
+    <h1> Please Login or SignUp to update this blog post</h1>
 {% endif %}
 {%endblock%}

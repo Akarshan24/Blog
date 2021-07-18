@@ -7,13 +7,14 @@
 <h1>{{post.title}}</h1>
 <small> By: {{post.author.first_name}} {{post.author.last_name}} </small><br/>
 <small> Date: {{post.post_date}}</small><br/>
+<small> Tags: <a href = "{% url 'cat-view' post.category %}">{{post.category}}</a></small><br/>
 <hr>
 <br/>
-{{post.body|slice:":500"}}
+{{post.body|safe}}
 <br/>
 <br/>
 <br/>
-{% if user.is_authenticated %}
+{% if user.is_authenticated and post.author.id == user.id %}
     <a class="btn btn-primary" href="{%url 'update-post' post.pk %}">Edit</a>
     <a class="btn btn-danger" href="{%url 'delete-post' post.pk %}">Delete</a>
 {% endif %}

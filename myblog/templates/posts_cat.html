@@ -1,9 +1,9 @@
 {%  extends 'base.html' %}
 {%block content%}
-<h1>Blogs:</h1>
+<h1>Blogs on {{cats}}:</h1>
 
 <ul>
-{%for post in object_list%}
+{%for post in posts%}
 <li><a href = "{% url 'blog-detail' post.pk %}">{{post.title}} </a> - <a href = "{% url 'cat-view' post.category %}">{{post.category}}</a> - {{post.author}} - {{post.post_date}}<br>
 {{post.body|slice:":500"|safe}}</li>
 {%endfor%}

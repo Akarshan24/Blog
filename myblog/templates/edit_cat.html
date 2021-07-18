@@ -1,0 +1,12 @@
+{%  extends 'base.html' %}
+{%block content%}
+<a class="btn btn-success" href="{%url 'add-cat' %}">Add Category</a>
+<br/><br/>
+<h3>Categories:</h3>
+<hr>
+<ul>
+{%for cat in object_list%}
+<li>{{cat.name}} - <a class="text-danger" href="{%url 'del-cat' cat.pk %}">Delete</a></li>
+{%endfor%}
+</ul>
+{%endblock%}

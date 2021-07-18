@@ -1,7 +1,7 @@
 {%  extends 'base.html' %}
+{%block title%}Create Post{%endblock%}
 {%block content%}
 {% if user.is_authenticated %}
-{%block title%}Create Post{%endblock%}
 
     <h2> Create Post .... </h2>
     <div class='form-group'>
@@ -11,7 +11,11 @@
             <button class="btn btn-success">Post</button>
         </form>
     </div>
-
+    <script>
+        
+        document.getElementById('author').value = "{{user.id}}";
+        
+    </script>
 {%else%}
 
 <h1> Please Login or SignUp first to create a blog post </h1>
